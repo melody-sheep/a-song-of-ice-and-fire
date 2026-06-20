@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐺 Westeros Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0806;
+            color: #f0e6d2;
+            font-family: 'Cinzel', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 40px;
+        }
+        h1 {
+            color: #d4a74a;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(212, 167, 74, 0.3);
+        }
+        .coming-soon {
+            color: #8b7355;
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            margin: 30px 0;
+            letter-spacing: 3px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #d4a74a;
+            text-decoration: none;
+            border: 1px solid #d4a74a;
+            padding: 15px 30px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .back-link:hover {
+            background: #d4a74a;
+            color: #0a0806;
+        }
+        .sigil {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sigil">🐺</div>
+        <h1>WESTEROS</h1>
+        <div class="coming-soon">"The Map is Coming..."</div>
+        <p style="color: #5a4a3a; margin: 20px 0; font-family: 'Lora', serif;">
+            Click the link below to return to the landing page.
+        </p>
+        <a href="/" class="back-link">← Return to the Beginning</a>
+    </div>
+</body>
+</html>

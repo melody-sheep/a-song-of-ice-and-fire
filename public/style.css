@@ -1,0 +1,406 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background: #0a0806;
+    color: #f0e6d2;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* ===== BACKGROUND - USING background.png ===== */
+#background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    /* USING background.png */
+    background-image: url('/assets/images/ui/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0a0806;
+}
+
+/* Dark overlay on background for atmosphere */
+#background-layer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 8, 6, 0.2);
+    pointer-events: none;
+}
+
+/* ===== CLOUDS - USING YOUR PNG IMAGES ===== */
+#clouds-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.cloud {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.7;
+}
+
+/* Cloud 1 - Biggest, Slowest */
+.cloud-1 {
+    width: 700px;
+    height: 350px;
+    top: 5%;
+    left: -700px;
+    background-image: url('/assets/images/clouds/cloud1.png');
+    animation: driftCloud1 70s linear infinite;
+    opacity: 0.6;
+}
+
+/* Cloud 2 */
+.cloud-2 {
+    width: 550px;
+    height: 275px;
+    top: 20%;
+    left: -550px;
+    background-image: url('/assets/images/clouds/cloud2.png');
+    animation: driftCloud2 55s linear infinite;
+    opacity: 0.65;
+}
+
+/* Cloud 3 */
+.cloud-3 {
+    width: 600px;
+    height: 300px;
+    top: 38%;
+    left: -600px;
+    background-image: url('/assets/images/clouds/cloud3.png');
+    animation: driftCloud3 65s linear infinite;
+    opacity: 0.6;
+}
+
+/* Cloud 4 - Smaller, faster */
+.cloud-4 {
+    width: 450px;
+    height: 225px;
+    top: 52%;
+    left: -450px;
+    background-image: url('/assets/images/clouds/cloud1.png');
+    animation: driftCloud4 45s linear infinite;
+    opacity: 0.7;
+}
+
+/* Cloud 5 */
+.cloud-5 {
+    width: 500px;
+    height: 250px;
+    top: 68%;
+    left: -500px;
+    background-image: url('/assets/images/clouds/cloud2.png');
+    animation: driftCloud5 50s linear infinite;
+    opacity: 0.65;
+}
+
+/* Cloud 6 - Smallest, Fastest */
+.cloud-6 {
+    width: 400px;
+    height: 200px;
+    top: 82%;
+    left: -400px;
+    background-image: url('/assets/images/clouds/cloud3.png');
+    animation: driftCloud6 35s linear infinite;
+    opacity: 0.75;
+}
+
+/* Cloud Animations */
+@keyframes driftCloud1 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 1400px)); }
+}
+
+@keyframes driftCloud2 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 1100px)); }
+}
+
+@keyframes driftCloud3 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 1200px)); }
+}
+
+@keyframes driftCloud4 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 900px)); }
+}
+
+@keyframes driftCloud5 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 1000px)); }
+}
+
+@keyframes driftCloud6 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 800px)); }
+}
+
+/* ===== PARTICLES (Embers/Sparks) ===== */
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-350px) scale(0.3);
+    }
+}
+
+/* ===== MAIN CONTENT ===== */
+#main-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ===== TITLE ===== */
+.title-container {
+    margin-bottom: 60px;
+    animation: fadeInTitle 2s ease-out;
+}
+
+@keyframes fadeInTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-title {
+    font-size: 6rem;
+    font-weight: 900;
+    letter-spacing: 15px;
+    color: #d4a74a;
+    text-shadow: 
+        0 0 20px rgba(212, 167, 74, 0.3),
+        0 4px 30px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(212, 167, 74, 0.1);
+    margin-bottom: -10px;
+}
+
+.sub-title {
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 20px;
+    color: #8b7355;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+.title-line {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a74a, transparent);
+    margin: 20px auto;
+}
+
+.tagline {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #b8a88a;
+    letter-spacing: 5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    animation: pulseTagline 3s ease-in-out infinite;
+}
+
+@keyframes pulseTagline {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* ===== BEGIN BUTTON ===== */
+.begin-button {
+    background: transparent;
+    border: 2px solid #d4a74a;
+    padding: 20px 50px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s ease;
+    background: rgba(20, 15, 10, 0.8);
+    min-width: 300px;
+    animation: fadeInButton 2.5s ease-out;
+}
+
+@keyframes fadeInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.begin-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #d4a74a, #8b6914, #d4a74a);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: borderGlow 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.begin-button:hover::before {
+    opacity: 1;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.begin-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(212, 167, 74, 0.2);
+}
+
+.button-text {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    color: #d4a74a;
+    text-shadow: 0 0 20px rgba(212, 167, 74, 0.2);
+    transition: all 0.3s ease;
+}
+
+.begin-button:hover .button-text {
+    text-shadow: 0 0 30px rgba(212, 167, 74, 0.5);
+    color: #f0e6d2;
+}
+
+.button-subtext {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 0.7rem;
+    color: #8b7355;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: #5a4a3a;
+    letter-spacing: 2px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3.5rem;
+        letter-spacing: 8px;
+    }
+    
+    .sub-title {
+        font-size: 2rem;
+        letter-spacing: 10px;
+    }
+    
+    .begin-button {
+        padding: 15px 30px;
+        min-width: 200px;
+    }
+    
+    .button-text {
+        font-size: 1rem;
+    }
+    
+    .cloud-1 { width: 350px; height: 175px; }
+    .cloud-2 { width: 275px; height: 137px; }
+    .cloud-3 { width: 300px; height: 150px; }
+    .cloud-4 { width: 225px; height: 112px; }
+    .cloud-5 { width: 250px; height: 125px; }
+    .cloud-6 { width: 200px; height: 100px; }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.5rem;
+        letter-spacing: 5px;
+    }
+    
+    .sub-title {
+        font-size: 1.5rem;
+        letter-spacing: 5px;
+    }
+    
+    .cloud-1 { width: 250px; height: 125px; }
+    .cloud-2 { width: 200px; height: 100px; }
+    .cloud-3 { width: 220px; height: 110px; }
+    .cloud-4 { width: 170px; height: 85px; }
+    .cloud-5 { width: 180px; height: 90px; }
+    .cloud-6 { width: 150px; height: 75px; }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+    <style>
+        body { background: #0a0806; color: #f0e6d2; font-family: Arial; padding: 20px; }
+        .image-container { margin: 20px 0; }
+        img { max-width: 100%; border: 2px solid #d4a74a; border-radius: 8px; }
+        .success { color: #4caf50; }
+        .error { color: #f44336; }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Image Test Page</h1>
+    
+    <div class="image-container">
+        <h2>background.png</h2>
+        <img src="/assets/images/ui/background.png" alt="Background" onload="this.style.borderColor='#4caf50'" onerror="this.style.borderColor='#f44336'">
+        <p id="bg1-status">Loading...</p>
+    </div>
+    
+    <div class="image-container">
+        <h2>cloud1.png</h2>
+        <img src="/assets/images/clouds/cloud1.png" alt="Cloud 1" onload="this.style.borderColor='#4caf50'" onerror="this.style.borderColor='#f44336'">
+        <p id="cloud1-status">Loading...</p>
+    </div>
+    
+    <div class="image-container">
+        <h2>cloud2.png</h2>
+        <img src="/assets/images/clouds/cloud2.png" alt="Cloud 2" onload="this.style.borderColor='#4caf50'" onerror="this.style.borderColor='#f44336'">
+        <p id="cloud2-status">Loading...</p>
+    </div>
+    
+    <div class="image-container">
+        <h2>cloud3.png</h2>
+        <img src="/assets/images/clouds/cloud3.png" alt="Cloud 3" onload="this.style.borderColor='#4caf50'" onerror="this.style.borderColor='#f44336'">
+        <p id="cloud3-status">Loading...</p>
+    </div>
+    
+    <p><a href="/" style="color: #d4a74a;">← Back to Game</a></p>
+    
+    <script>
+        document.querySelectorAll('img').forEach(img => {
+            img.onload = () => {
+                const status = img.parentElement.querySelector('p');
+                status.textContent = '✅ Image loaded successfully!';
+                status.className = 'success';
+            };
+            img.onerror = () => {
+                const status = img.parentElement.querySelector('p');
+                status.textContent = '❌ Image not found! Check path: ' + img.src;
+                status.className = 'error';
+            };
+        });
+    </script>
+</body>
+</html>
