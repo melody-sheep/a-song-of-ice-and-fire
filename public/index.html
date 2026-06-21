@@ -3,46 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐺 Westeros Rising</title>
+    <title>A Song of Ice and Fire</title>
     
-    <!-- Google Fonts - Medieval Style -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Layer -->
-    <div id="background-layer"></div>
-    
-    <!-- Cloud Layers -->
-    <div id="clouds-layer">
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="cloud cloud-3"></div>
-        <div class="cloud cloud-4"></div>
-        <div class="cloud cloud-5"></div>
-        <div class="cloud cloud-6"></div>
+    <!-- ====== BACKGROUND ====== -->
+    <div id="background-layer">
+        <div class="vignette-overlay"></div>
+        <div class="grain-overlay"></div>
+        <div class="dark-overlay"></div>
+        <div class="vignette-black"></div>
     </div>
     
-    <!-- Main Content -->
-    <div id="main-content">
-        <div id="particles-container"></div>
+    <!-- ====== CLOUD LAYERS ====== -->
+    <div id="clouds-layer">
+        <!-- Layer 1: Deep Background - Slow -->
+        <div class="cloud cloud-1 left"></div>
+        <div class="cloud cloud-2 right"></div>
+        <div class="cloud cloud-3 left"></div>
+        <div class="cloud cloud-4 right"></div>
         
-        <div class="title-container">
-            <h1 class="main-title">WESTEROS</h1>
-            <h2 class="sub-title">R I S I N G</h2>
-            <div class="title-line"></div>
-            <p class="tagline">"Winter is Coming"</p>
+        <!-- Layer 2: Mid Background -->
+        <div class="cloud cloud-5 left"></div>
+        <div class="cloud cloud-6 right"></div>
+        <div class="cloud cloud-7 left"></div>
+        <div class="cloud cloud-8 right"></div>
+        
+        <!-- Layer 3: Foreground - Fast -->
+        <div class="cloud cloud-9 left"></div>
+        <div class="cloud cloud-10 right"></div>
+        <div class="cloud cloud-11 left"></div>
+        <div class="cloud cloud-12 right"></div>
+        
+        <!-- Layer 4: Bottom Clouds - 30+ Overlapping -->
+        <div class="cloud-bottom bottom-cloud-1 left"></div>
+        <div class="cloud-bottom bottom-cloud-2 right"></div>
+        <div class="cloud-bottom bottom-cloud-3 left"></div>
+        <div class="cloud-bottom bottom-cloud-4 right"></div>
+        <div class="cloud-bottom bottom-cloud-5 left"></div>
+        <div class="cloud-bottom bottom-cloud-6 right"></div>
+        <div class="cloud-bottom bottom-cloud-7 left"></div>
+        <div class="cloud-bottom bottom-cloud-8 right"></div>
+        <div class="cloud-bottom bottom-cloud-9 left"></div>
+        <div class="cloud-bottom bottom-cloud-10 right"></div>
+        <div class="cloud-bottom bottom-cloud-11 left"></div>
+        <div class="cloud-bottom bottom-cloud-12 right"></div>
+        <div class="cloud-bottom bottom-cloud-13 left"></div>
+        <div class="cloud-bottom bottom-cloud-14 right"></div>
+        <div class="cloud-bottom bottom-cloud-15 left"></div>
+        <div class="cloud-bottom bottom-cloud-16 right"></div>
+        <div class="cloud-bottom bottom-cloud-17 left"></div>
+        <div class="cloud-bottom bottom-cloud-18 right"></div>
+        <div class="cloud-bottom bottom-cloud-19 left"></div>
+        <div class="cloud-bottom bottom-cloud-20 right"></div>
+        <div class="cloud-bottom bottom-cloud-21 left"></div>
+        <div class="cloud-bottom bottom-cloud-22 right"></div>
+        <div class="cloud-bottom bottom-cloud-23 left"></div>
+        <div class="cloud-bottom bottom-cloud-24 right"></div>
+        <div class="cloud-bottom bottom-cloud-25 left"></div>
+        <div class="cloud-bottom bottom-cloud-26 right"></div>
+        <div class="cloud-bottom bottom-cloud-27 left"></div>
+        <div class="cloud-bottom bottom-cloud-28 right"></div>
+        <div class="cloud-bottom bottom-cloud-29 left"></div>
+        <div class="cloud-bottom bottom-cloud-30 right"></div>
+        <div class="cloud-bottom bottom-cloud-31 left"></div>
+        <div class="cloud-bottom bottom-cloud-32 right"></div>
+        <div class="cloud-bottom bottom-cloud-33 left"></div>
+        <div class="cloud-bottom bottom-cloud-34 right"></div>
+        <div class="cloud-bottom bottom-cloud-35 left"></div>
+        <div class="cloud-bottom bottom-cloud-36 right"></div>
+    </div>
+    
+    <!-- ====== FLOATING SIGILS ====== -->
+    <div class="floating-sigils">
+        <span class="sigil stark">🐺</span>
+        <span class="sigil lannister">🦁</span>
+        <span class="sigil targaryen">🐉</span>
+        <span class="sigil baratheon">🦌</span>
+        <span class="sigil greyjoy">🦑</span>
+        <span class="sigil tyrell">🌹</span>
+        <span class="sigil martell">☀️</span>
+        <span class="sigil tully">🐟</span>
+    </div>
+    
+    <!-- ====== PARTICLES ====== -->
+    <div id="particles-container"></div>
+    
+    <!-- ====== MAIN CONTENT ====== -->
+    <div id="main-content">
+        
+        <!-- Ornate Top Border -->
+        <div class="ornate-divider top">
+            <span class="divider-icon">❄</span>
+            <span class="divider-line"></span>
+            <span class="divider-icon">🔥</span>
         </div>
         
+        <div class="title-container">
+            <!-- House Selector -->
+            <div class="house-selector-wrapper" role="tablist">
+                <button class="house-btn active" data-house="stark" role="tab" aria-selected="true" aria-label="House Stark">
+                    <span class="house-symbol">🐺</span>
+                    <span class="house-tooltip">Stark</span>
+                </button>
+                <button class="house-btn" data-house="lannister" role="tab" aria-selected="false" aria-label="House Lannister">
+                    <span class="house-symbol">🦁</span>
+                    <span class="house-tooltip">Lannister</span>
+                </button>
+                <button class="house-btn" data-house="targaryen" role="tab" aria-selected="false" aria-label="House Targaryen">
+                    <span class="house-symbol">🐉</span>
+                    <span class="house-tooltip">Targaryen</span>
+                </button>
+                <button class="house-btn" data-house="baratheon" role="tab" aria-selected="false" aria-label="House Baratheon">
+                    <span class="house-symbol">🦌</span>
+                    <span class="house-tooltip">Baratheon</span>
+                </button>
+                <button class="house-btn" data-house="greyjoy" role="tab" aria-selected="false" aria-label="House Greyjoy">
+                    <span class="house-symbol">🦑</span>
+                    <span class="house-tooltip">Greyjoy</span>
+                </button>
+                <button class="house-btn" data-house="tyrell" role="tab" aria-selected="false" aria-label="House Tyrell">
+                    <span class="house-symbol">🌹</span>
+                    <span class="house-tooltip">Tyrell</span>
+                </button>
+                <button class="house-btn" data-house="martell" role="tab" aria-selected="false" aria-label="House Martell">
+                    <span class="house-symbol">☀️</span>
+                    <span class="house-tooltip">Martell</span>
+                </button>
+                <button class="house-btn" data-house="tully" role="tab" aria-selected="false" aria-label="House Tully">
+                    <span class="house-symbol">🐟</span>
+                    <span class="house-tooltip">Tully</span>
+                </button>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="main-title">
+                <span class="word-a">A</span>
+                <span class="word-song">SONG</span>
+                <span class="word-of">OF</span>
+                <span class="word-ice">ICE</span>
+                <span class="word-and">&</span>
+                <span class="word-fire">FIRE</span>
+            </h1>
+            
+            <h2 class="sub-title">W E S T E R O S &nbsp; R I S I N G</h2>
+            
+            <div class="title-line">
+                <span class="line-ornament">❄</span>
+                <span class="line-bar"></span>
+                <span class="line-ornament">🔥</span>
+            </div>
+            
+            <p class="tagline" id="loreTagline">"The world is full of stories, but the best ones are written in ice and fire."</p>
+            
+            <!-- Selected House Display -->
+            <div class="selected-house-display">
+                <span class="house-name" id="houseName">House Stark</span>
+                <span class="house-words" id="houseWords">"Winter is Coming"</span>
+            </div>
+        </div>
+        
+        <!-- Begin Button - No Roundness -->
         <button id="beginBtn" class="begin-button">
-            <span class="button-text">BEGIN YOUR CONQUEST</span>
-            <span class="button-subtext">Enter the World of Ice and Fire</span>
+            <span class="btn-content">
+                <span class="btn-icon">⚔</span>
+                <span class="button-text">ENTER THE REALM</span>
+                <span class="button-subtext">A Journey Through Ice and Fire Begins</span>
+                <span class="btn-shimmer"></span>
+                <span class="btn-gradient-hover"></span>
+            </span>
         </button>
         
+        <!-- Maester's Wisdom -->
+        <div class="maester-advice">
+            <span class="maester-icon">📜</span>
+            <p class="maester-text" id="maesterText">"The lone wolf dies, but the pack survives."</p>
+            <span class="maester-attribution">— Old Nan</span>
+        </div>
+        
+        <!-- Ornate Bottom Border -->
+        <div class="ornate-divider bottom">
+            <span class="divider-icon">❄</span>
+            <span class="divider-line"></span>
+            <span class="divider-icon">🔥</span>
+        </div>
+        
         <div class="footer">
-            <p>⚔️ A Game of Thrones Inspired Experience ⚔️</p>
+            <p>⚔ A Game of Thrones Inspired Experience ⚔</p>
+            <p class="footer-sub">The Great War • Winter is Here</p>
         </div>
     </div>
     
