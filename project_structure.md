@@ -1,11 +1,13 @@
-# 📁 Complete Project Structure - GOT: Westeros Rising
+## 📁 Updated Complete Project Structure
+
+Here's the complete updated structure with all your new files added:
 
 ```
 📁 GOT_GAME/
 │
 ├── 📁 node_modules/                        # Node.js dependencies (auto-generated)
 │
-├── 📁 data/                                # NEW - Game data (JSON files)
+├── 📁 data/                                # Game data (JSON files)
 │   ├── houses.json                         # House data backup
 │   ├── locations.json                      # Location data backup
 │   └── lore.json                           # Lore snippets backup
@@ -23,33 +25,54 @@
 │   │       └── 📁 ui/                      # UI elements
 │   │           ├── background.png          # Main background
 │   │           ├── backgroundv2.png        # Background version 2
-│   │           ├── backgroundv3.jpg        # MODIFIED - Background version 3
-│   │           ├── backgroundv3.png        # NEW - Background version 3 (PNG)
-│   │           └── map1.png                # NEW - Westeros map
+│   │           ├── backgroundv3.jpg        # Background version 3
+│   │           ├── backgroundv3.png        # Background version 3 (PNG)
+│   │           └── map1.png                # Westeros map
 │   │
-│   ├── 📁 css/                             # NEW - Stylesheets
+│   ├── 📁 css/                             # Stylesheets
 │   │   ├── style.css                       # Core theme (colors, variables, reset)
 │   │   ├── landing.css                     # Landing page specific styles
 │   │   ├── map.css                         # Map page specific styles
-│   │   └── transitions.css                 # Transition animations
+│   │   ├── transitions.css                 # Transition animations
+│   │   └── kingdom.css                     # ✨ NEW - Shared kingdom styles
 │   │
-│   ├── 📁 js/                              # NEW - JavaScript files
+│   ├── 📁 js/                              # JavaScript files
 │   │   ├── main.js                         # Landing page logic
-│   │   ├── map.js                          # Map page logic
+│   │   ├── map.js                          # ✨ MODIFIED - Map page logic (fixed navigation)
 │   │   ├── clouds.js                       # Cloud system
 │   │   ├── transitions.js                  # Transition system
 │   │   ├── utils.js                        # Utility functions
 │   │   │
-│   │   └── 📁 data/                        # JavaScript data files
-│   │       ├── houses.js                   # House data
-│   │       ├── locations.js                # Map coordinates
-│   │       └── lore.js                     # Lore snippets
+│   │   ├── 📁 data/                        # JavaScript data files
+│   │   │   ├── houses.js                   # House data
+│   │   │   ├── locations.js                # Map coordinates
+│   │   │   ├── lore.js                     # ✨ MODIFIED - Lore snippets
+│   │   │   └── buildings.js                # ✨ NEW - Building definitions
+│   │   │
+│   │   └── 📁 core/                        # ✨ NEW - Game engine classes
+│   │       ├── GridManager.js              # ✨ NEW - Grid rendering & placement
+│   │       ├── ResourceManager.js          # ✨ NEW - Resource calculations
+│   │       └── GameEngine.js               # ✨ NEW - Main game loop
 │   │
-│   ├── 📄 index.html                       # MODIFIED - Main game entry point
-│   ├── 📄 main.js                          # MODIFIED - Core game logic
-│   ├── 📄 map.html                         # MODIFIED - Map viewer page
+│   ├── 📁 kingdoms/                        # ✨ NEW - Kingdom folders
+│   │   ├── 📁 winterfell/                  # ✨ NEW - House Stark
+│   │   │   ├── winterfell.html             # ✨ NEW - Winterfell page
+│   │   │   ├── winterfell.css              # ✨ NEW - Winterfell theme
+│   │   │   └── winterfell.js               # ✨ NEW - Winterfell logic
+│   │   │
+│   │   ├── 📁 casterlyrock/                # ✨ NEW - Empty (House Lannister)
+│   │   ├── 📁 kingslanding/                # ✨ NEW - Empty (House Baratheon)
+│   │   ├── 📁 dragonstone/                 # ✨ NEW - Empty (House Targaryen)
+│   │   ├── 📁 highgarden/                  # ✨ NEW - Empty (House Tyrell)
+│   │   ├── 📁 sunspear/                    # ✨ NEW - Empty (House Martell)
+│   │   ├── 📁 thevale/                     # ✨ NEW - Empty (House Arryn)
+│   │   ├── 📁 riverrun/                    # ✨ NEW - Empty (House Tully)
+│   │   └── 📁 castleblack/                 # ✨ NEW - Empty (Night's Watch)
+│   │
+│   ├── 📄 index.html                       # Main game entry point
+│   ├── 📄 map.html                         # Map viewer page
 │   ├── 📄 style.css                        # Global styles
-│   └── 📄 test-images.html                 # MODIFIED - Image testing page
+│   └── 📄 test-images.html                 # Image testing page
 │
 ├── 📁 music/                               # Audio music files
 │
@@ -64,108 +87,89 @@
 
 ---
 
-## 📊 File Summary
+## 📊 Updated File Summary
 
 | Type | Count | Files |
 |------|-------|-------|
-| **HTML Files** | 3 | index.html, map.html, test-images.html |
-| **CSS Files** | 4 | style.css, landing.css, map.css, transitions.css |
-| **JavaScript Files** | 7 | main.js, map.js, clouds.js, transitions.js, utils.js, houses.js, locations.js, lore.js |
+| **HTML Files** | 4 | index.html, map.html, test-images.html, winterfell.html |
+| **CSS Files** | 5 | style.css, landing.css, map.css, transitions.css, kingdom.css |
+| **JavaScript Files** | 10 | main.js, map.js, clouds.js, transitions.js, utils.js, houses.js, locations.js, lore.js, buildings.js, winterfell.js |
+| **JS Core Files** | 3 | GridManager.js, ResourceManager.js, GameEngine.js |
 | **Data Files** | 3 | houses.json, locations.json, lore.json |
 | **Image Files** | 5 | cloud1.png, cloud2.png, cloud3.png, backgroundv3.png, map1.png |
-| **Image Directories** | 2 | sigils/, ui/ |
-| **Audio Directories** | 2 | music/, sounds/ |
+| **Kingdom Folders** | 9 | winterfell, casterlyrock, kingslanding, dragonstone, highgarden, sunspear, thevale, riverrun, castleblack |
 | **Config Files** | 2 | package.json, package-lock.json |
 | **Documentation** | 1 | scripture_plan.md |
 
 ---
 
-## 📝 File Status (from git status)
+## 📝 File Status Summary
 
 ### Modified Files
 | File | Description |
 |------|-------------|
-| `public/assets/images/ui/backgroundv3.jpg` | Updated background image |
-| `public/index.html` | Updated with new CSS/JS paths |
-| `public/main.js` | Updated landing page logic |
-| `public/map.html` | Updated with glassmorphism, return button |
-| `public/test-images.html` | Updated test page |
+| `public/js/data/lore.js` | Updated lore snippets |
+| `public/js/map.js` | Fixed "Navigate to Kingdom" button functionality |
 
-### New Files (Untracked)
+### New Files
 | File | Description |
 |------|-------------|
-| `data/` | New data folder |
-| `data/houses.json` | House data backup |
-| `data/locations.json` | Location data backup |
-| `data/lore.json` | Lore snippets backup |
-| `public/assets/images/ui/backgroundv3.png` | Background PNG version |
-| `public/assets/images/ui/map1.png` | Westeros map image |
-| `public/css/` | New CSS folder |
-| `public/css/style.css` | Core theme |
-| `public/css/landing.css` | Landing styles |
-| `public/css/map.css` | Map styles (glassmorphism, zoom) |
-| `public/css/transitions.css` | Transition styles |
-| `public/js/` | New JS folder |
-| `public/js/main.js` | Landing logic |
-| `public/js/map.js` | Map logic |
-| `public/js/clouds.js` | Cloud system |
-| `public/js/transitions.js` | Transition system |
-| `public/js/utils.js` | Utilities |
-| `public/js/data/` | Data folder |
-| `public/js/data/houses.js` | House data |
-| `public/js/data/locations.js` | Location data |
-| `public/js/data/lore.js` | Lore data |
+| `public/css/kingdom.css` | Shared kingdom styles (grid, panels, buttons) |
+| `public/js/data/buildings.js` | All building definitions (castle, house, farm, etc.) |
+| `public/js/core/GridManager.js` | Grid rendering and placement logic |
+| `public/js/core/ResourceManager.js` | Resource calculations and management |
+| `public/js/core/GameEngine.js` | Main game loop and state management |
+| `public/kingdoms/` | Root folder for all kingdoms |
+| `public/kingdoms/winterfell/winterfell.html` | Winterfell kingdom page |
+| `public/kingdoms/winterfell/winterfell.css` | Winterfell theme styles |
+| `public/kingdoms/winterfell/winterfell.js` | Winterfell game logic |
+| `public/kingdoms/casterlyrock/` | Empty - Future Lannister kingdom |
+| `public/kingdoms/kingslanding/` | Empty - Future Baratheon kingdom |
+| `public/kingdoms/dragonstone/` | Empty - Future Targaryen kingdom |
+| `public/kingdoms/highgarden/` | Empty - Future Tyrell kingdom |
+| `public/kingdoms/sunspear/` | Empty - Future Martell kingdom |
+| `public/kingdoms/thevale/` | Empty - Future Arryn kingdom |
+| `public/kingdoms/riverrun/` | Empty - Future Tully kingdom |
+| `public/kingdoms/castleblack/` | Empty - Future Night's Watch kingdom |
 
 ---
 
 ## 📂 Directory Breakdown
 
-### 🖼️ `/public/assets/images/`
+### 🏰 `/public/kingdoms/`
 
-| File/Directory | Status | Purpose |
-|----------------|--------|---------|
-| `cloud1.png` | Existing | Cloud texture variant 1 |
-| `cloud2.png` | Existing | Cloud texture variant 2 |
-| `cloud3.png` | Existing | Cloud texture variant 3 |
-| `sigils/` | Existing | House sigils (Stark, Lannister, Targaryen, etc.) |
-| `ui/` | Existing | UI elements (backgrounds, buttons, HUD) |
-| `ui/backgroundv3.jpg` | **MODIFIED** | Background version 3 (JPG format) |
-| `ui/backgroundv3.png` | **NEW** | Background version 3 (PNG format) |
-| `ui/map1.png` | **NEW** | Westeros map (interactive) |
-
-### 🎨 UI Backgrounds
-
-| File | Status | Description |
-|------|--------|-------------|
-| `background.png` | Existing | Main game background |
-| `backgroundv2.png` | Existing | Background variant 2 |
-| `backgroundv3.jpg` | **MODIFIED** | Background variant 3 (JPG format) |
-| `backgroundv3.png` | **NEW** | Background variant 3 (PNG format) |
-| `map1.png` | **NEW** | Westeros map (interactive) |
-
-### 🎵 Audio Directories
-
-| Directory | Contents |
-|-----------|----------|
-| `music/` | Background music, theme songs |
-| `sounds/` | Sound effects (clicks, battles, notifications) |
+| Directory | Status | Description |
+|-----------|--------|-------------|
+| `winterfell/` | ✅ **Complete** | House Stark - Has HTML, CSS, JS |
+| `casterlyrock/` | ⚠️ Empty | House Lannister - Ready for future |
+| `kingslanding/` | ⚠️ Empty | House Baratheon - Ready for future |
+| `dragonstone/` | ⚠️ Empty | House Targaryen - Ready for future |
+| `highgarden/` | ⚠️ Empty | House Tyrell - Ready for future |
+| `sunspear/` | ⚠️ Empty | House Martell - Ready for future |
+| `thevale/` | ⚠️ Empty | House Arryn - Ready for future |
+| `riverrun/` | ⚠️ Empty | House Tully - Ready for future |
+| `castleblack/` | ⚠️ Empty | Night's Watch - Ready for future |
 
 ---
 
-## 📂 Root Files
+## 🗺️ Navigation Flow
 
-| File | Status | Purpose |
-|------|--------|---------|
-| `index.html` | **MODIFIED** | Main game entry page |
-| `main.js` | **MODIFIED** | Core game logic (Phaser/Canvas) |
-| `map.html` | **MODIFIED** | Interactive map viewer |
-| `style.css` | Existing | Global styling |
-| `test-images.html` | **MODIFIED** | Asset testing/debug page |
-| `server.js` | Existing | Local dev server (Node.js/Express) |
-| `package.json` | Existing | Project dependencies |
-| `package-lock.json` | Existing | Locked dependency versions |
-| `scripture_plan.md` | Existing | Game documentation/planning |
-| `.gitignore` | Existing | Git ignore file |
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────────────┐
+│                 │     │                 │     │                         │
+│   index.html    │ ──▶ │    map.html     │ ──▶ │  kingdoms/winterfell/   │
+│   (Landing)     │     │   (Map View)    │     │    winterfell.html      │
+│                 │     │                 │     │                         │
+└─────────────────┘     └─────────────────┘     └─────────────────────────┘
+                              │                              │
+                              │                              │
+                              ▼                              ▼
+                        ┌─────────────────┐     ┌─────────────────────────┐
+                        │   Modal Popup   │     │   Other Kingdoms        │
+                        │ Navigate to     │     │   (Coming Soon)         │
+                        │ Kingdom         │     │                         │
+                        └─────────────────┘     └─────────────────────────┘
+```
 
 ---
 
@@ -178,10 +182,43 @@ npm install
 # Start development server
 node server.js
 
-# Or if using nodemon
-npm run dev
+# Access the game
+# http://localhost:3000
 ```
 
 ---
 
-**Winter is Coming! ❄️🔥**
+## 🧪 Test the Flow
+
+1. **Landing Page:** `http://localhost:3000/`
+2. **Select House:** Click a house sigil (Stark, Lannister, etc.)
+3. **Enter Realm:** Click "ENTER THE REALM"
+4. **Map View:** Click Winterfell on the map
+5. **Modal:** Click "Navigate to Kingdom"
+6. **Winterfell:** View the kingdom page with grid
+
+---
+
+## 📋 Git Commands to Commit
+
+```bash
+# Add all new files
+git add public/css/kingdom.css
+git add public/js/data/buildings.js
+git add public/js/core/
+git add public/kingdoms/
+
+# Add modified files
+git add public/js/data/lore.js
+git add public/js/map.js
+
+# Commit
+git commit -m "✨ Add Winterfell kingdom page with grid system and navigation"
+
+# Push
+git push origin main
+```
+
+---
+
+**The North remembers! 🐺❄️**

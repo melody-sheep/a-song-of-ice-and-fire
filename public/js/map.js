@@ -15,6 +15,18 @@ const returnBtn = document.getElementById('returnBtn');
 const kingdomSelect = document.getElementById('kingdomSelect');
 const modal = document.getElementById('modal');
 
+// ===== KINGDOM PATH MAPPING =====
+const KINGDOM_PATHS = {
+    'winterfell': '/kingdoms/winterfell/winterfell.html',
+    'westerlands': '/kingdoms/casterlyrock/casterlyrock.html',
+    'thevale': '/kingdoms/thevale/thevale.html',
+    'dragonstone': '/kingdoms/dragonstone/dragonstone.html',
+    'kingslanding': '/kingdoms/kingslanding/kingslanding.html',
+    'highgarden': '/kingdoms/highgarden/highgarden.html',
+    'sunspear': '/kingdoms/sunspear/sunspear.html',
+    'castleblack': '/kingdoms/castleblack/castleblack.html'
+};
+
 // ===== GENERATE HOTSPOTS =====
 function generateHotspots() {
     const locations = getAllLocations();
@@ -198,22 +210,54 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
+// ===== MODAL CONTROLS =====
 document.getElementById('modalClose').addEventListener('click', closeModal);
 document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal(); });
 
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal();
+});
+
+// ===== MODAL NAVIGATE BUTTON - FIXED =====
 document.getElementById('modalNavigate').addEventListener('click', function() {
     const locationId = this.dataset.location;
     const location = getLocation(locationId);
-    if (location) {
-        closeModal();
-        showNotification(`🛡️ Welcome to ${location.name}!`);
+    if (!location) return;
+    
+    closeModal();
+    
+    // Check if this kingdom has a page built
+    const targetPath = KINGDOM_PATHS[locationId];
+    
+    if (targetPath) {
+        // Save which house was selected for the kingdom page
+        sessionStorage.setItem('selectedHouse', location.house);
+        sessionStorage.setItem('currentKingdom', locationId);
+        
+        // Show travel notification
+        showNotification(`🐺 Traveling to ${location.name}...`);
+        
+        // Navigate after a short delay so the notification is visible
+        setTimeout(() => {
+            window.location.href = targetPath;
+        }, 600);
+    } else {
+        // Kingdom not built yet
+        showNotification(`⚠️ ${location.name} is not ready yet. Coming soon!`);
     }
 });
 
 function showNotification(message) {
+    // Remove any existing notifications
+    const existing = document.querySelector('.map-notification');
+    if (existing) existing.remove();
+    
     const notification = document.createElement('div');
+    notification.className = 'map-notification';
     notification.style.cssText = `
         position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
         background: rgba(5,3,2,0.92); border: 1px solid rgba(212,167,74,0.2);
@@ -225,17 +269,22 @@ function showNotification(message) {
     `;
     notification.textContent = message;
     document.body.appendChild(notification);
+    
     requestAnimationFrame(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(-50%) translateY(0)';
     });
+    
     setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateX(-50%) translateY(100px)';
-        setTimeout(() => { if (notification.parentNode) notification.parentNode.removeChild(notification); }, 500);
+        setTimeout(() => {
+            if (notification.parentNode) notification.parentNode.removeChild(notification);
+        }, 500);
     }, 2500);
 }
 
+// ===== SIDEBAR CONTROLS =====
 function toggleSidebar() {
     const isOpen = !sidebar.classList.contains('collapsed');
     sidebar.classList.toggle('collapsed');
@@ -249,33 +298,46 @@ function toggleSidebar() {
 }
 
 sidebarToggle.addEventListener('click', toggleSidebar);
-sidebarToggleBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleSidebar(); });
+sidebarToggleBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleSidebar();
+});
 
+// ===== RETURN TO LANDING =====
 returnBtn.addEventListener('click', function() {
     sessionStorage.removeItem('hasTransitioned');
     window.location.href = '/';
 });
 
-kingdomSelect.addEventListener('change', function() { selectKingdom(this.value); });
+// ===== KINGDOM SELECT DROPDOWN =====
+kingdomSelect.addEventListener('change', function() {
+    selectKingdom(this.value);
+});
 
+// ===== ACTION BUTTONS =====
 document.getElementById('actionAttack').addEventListener('click', function() {
     showNotification(`⚔️ Preparing attack on ${document.getElementById('kingdomName').textContent}...`);
 });
+
 document.getElementById('actionDefend').addEventListener('click', function() {
     showNotification(`🛡️ Reinforcing defenses at ${document.getElementById('kingdomName').textContent}...`);
 });
+
 document.getElementById('actionLore').addEventListener('click', function() {
     const location = getLocation(currentLocation);
     if (location) showModal(currentLocation);
 });
 
+// ===== KEYBOARD SHORTCUTS =====
 document.addEventListener('keydown', (e) => {
+    // Toggle sidebar with 'S' key
     if ((e.key === 's' || e.key === 'S') && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
         toggleSidebar();
     }
 });
 
+// ===== INITIALIZE =====
 function init() {
     console.log('🗺️ Westeros Map - Loading...');
     generateHotspots();
@@ -285,6 +347,7 @@ function init() {
         sidebarToggleBtn.innerHTML = '📖';
     }
     console.log('✅ Map loaded!');
+    console.log('📋 Click a kingdom and press "Navigate to Kingdom" to enter!');
 }
 
 document.addEventListener('DOMContentLoaded', init);
