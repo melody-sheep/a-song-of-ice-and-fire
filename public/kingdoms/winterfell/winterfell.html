@@ -32,7 +32,7 @@
         <div class="cloud cloud-8 right"></div>
     </div>
     
-    <!-- ====== PARTICLES ====== -->
+    <!-- ====== PARTICLES / SNOWFLAKES ====== -->
     <div id="particles-container"></div>
     
     <!-- ====== TOP BAR ====== -->
@@ -103,6 +103,9 @@
                     <button class="option-btn" data-cols="30" data-rows="16">30 × 16</button>
                     <button class="option-btn" data-cols="40" data-rows="20">40 × 20</button>
                     <button class="option-btn" data-cols="50" data-rows="30">50 × 30</button>
+                    <button class="option-btn" data-cols="75" data-rows="50">75 × 50</button>
+                    <button class="option-btn" data-cols="100" data-rows="70">100 × 70</button>
+                    <button class="option-btn" data-cols="100" data-rows="100">100 × 100</button>
                 </div>
             </div>
 
@@ -188,16 +191,54 @@
                     <span class="dropdown-arrow">▾</span>
                 </button>
                 <div class="dropdown-content" id="terrainMenu">
-                    <button class="option-btn">🟩 Grass</button>
-                    <button class="option-btn">⬜ Snow</button>
-                    <button class="option-btn">🟧 Dirt</button>
-                    <button class="option-btn">🟤 Mud</button>
-                    <button class="option-btn">🟦 Water</button>
-                    <button class="option-btn">⬛ Stone</button>
-                    <button class="option-btn">🟩 Dark Grass</button>
-                    <button class="option-btn">⬜ Patchy Snow</button>
-                    <button class="option-btn">🟨 Sand</button>
-                    <button class="option-btn">🟫 Forest Floor</button>
+                    <button class="option-btn" data-terrain="grass">🟩 Grass</button>
+                    <button class="option-btn" data-terrain="snow">⬜ Snow</button>
+                    <button class="option-btn" data-terrain="dirt">🟧 Dirt</button>
+                    <button class="option-btn" data-terrain="mud">🟤 Mud</button>
+                    <button class="option-btn" data-terrain="water">🟦 Water</button>
+                    <button class="option-btn" data-terrain="stone">⬛ Stone</button>
+                    <button class="option-btn" data-terrain="grass-dark">🟩 Dark Grass</button>
+                    <button class="option-btn" data-terrain="snow-patchy">⬜ Patchy Snow</button>
+                    <button class="option-btn" data-terrain="sand">🟨 Sand</button>
+                    <button class="option-btn" data-terrain="forest-floor">🟫 Forest Floor</button>
+                </div>
+            </div>
+
+            <!-- TREES -->
+            <div class="dropdown-section">
+                <button class="dropdown-toggle" data-target="treesMenu">
+                    <span class="dropdown-icon">🌲</span>
+                    <span class="dropdown-label">Trees</span>
+                    <span class="dropdown-arrow">▾</span>
+                </button>
+                <div class="dropdown-content" id="treesMenu">
+                    <!-- Small Trees -->
+                    <div class="tree-category-label">🌱 Small (1×1 → 2×2)</div>
+                    <button class="option-btn tree-btn" data-tree="small_pine">🌲 Small Pine</button>
+                    <button class="option-btn tree-btn" data-tree="fir_1x1">🌲 Fir Tree</button>
+                    <button class="option-btn tree-btn" data-tree="birch_1x1">🌳 Birch</button>
+                    
+                    <!-- Medium Trees -->
+                    <div class="tree-category-label">🌲 Medium (2×2 → 3×3)</div>
+                    <button class="option-btn tree-btn" data-tree="pine_2x2">🌲 Medium Pine</button>
+                    <button class="option-btn tree-btn" data-tree="oak_2x2">🌳 Oak</button>
+                    <button class="option-btn tree-btn" data-tree="pine_cluster_2x2">🌲 Pine Cluster</button>
+                    <button class="option-btn tree-btn" data-tree="dead_tree_2x2">💀 Dead Tree</button>
+                    <button class="option-btn tree-btn" data-tree="large_birch_2x2">🌳 Large Birch</button>
+                    
+                    <!-- Large Trees -->
+                    <div class="tree-category-label">🌳 Large (3×3 → 4×4)</div>
+                    <button class="option-btn tree-btn" data-tree="pine_3x3">🌲 Large Pine</button>
+                    <button class="option-btn tree-btn" data-tree="oak_3x3">🌳 Large Oak</button>
+                    <button class="option-btn tree-btn" data-tree="weirwood_3x3">🌿 Weirwood</button>
+                    <button class="option-btn tree-btn" data-tree="ancient_oak_3x3">🌳 Ancient Oak</button>
+                    <button class="option-btn tree-btn" data-tree="dead_tree_3x3">💀 Large Dead Tree</button>
+                    
+                    <!-- Huge Trees -->
+                    <div class="tree-category-label">🌿 Huge (4×4 → 5×5)</div>
+                    <button class="option-btn tree-btn" data-tree="weirwood_4x4">🌿 Heart Tree</button>
+                    <button class="option-btn tree-btn" data-tree="ancient_oak_4x4">🌳 Giant Ancient Oak</button>
+                    <button class="option-btn tree-btn" data-tree="heart_tree_4x4">🌿 Giant Heart Tree</button>
                 </div>
             </div>
 
@@ -263,6 +304,12 @@
                 <button class="action-btn danger">🗑 Clear All</button>
             </div>
 
+            <!-- CLEAR TERRAIN & TREES -->
+            <div class="actions-section" style="margin-top: 4px;">
+                <button class="action-btn danger clear-terrain">🗑 Clear Terrain</button>
+                <button class="action-btn danger clear-trees">🗑 Clear Trees</button>
+            </div>
+
         </div>
     </div>
 
@@ -276,6 +323,10 @@
     </div>
 
     <!-- ====== SCRIPTS ====== -->
+    <script src="/js/data/trees.js"></script>
+    <script src="/js/core/GridManager.js"></script>
+    <script src="/js/core/TerrainManager.js"></script>
+    <script src="/js/core/TreeManager.js"></script>
     <script src="winterfell.js"></script>
 </body>
 </html>

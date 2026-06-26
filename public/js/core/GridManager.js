@@ -4,10 +4,9 @@
 
 class GridManager {
     constructor(config) {
-        this.cols = config.gridCols || 18;
-        this.rows = config.gridRows || 10;
-        this.cellWidth = config.cellWidth || 60;
-        this.cellHeight = config.cellHeight || 40;
+        this.cols = config.gridCols || 20;
+        this.rows = config.gridRows || 12;
+        this.cellSize = config.cellSize || 30;
         this.gridData = [];
         this.buildings = [];
         this.container = null;
@@ -35,72 +34,65 @@ class GridManager {
     
     setContainer(container) {
         this.container = container;
-        this.render();
+    }
+    
+    connectToGrid() {
+        if (!this.container) return;
+        
+        const cells = this.container.querySelectorAll('.grid-cell');
+        cells.forEach(cell => {
+            const x = parseInt(cell.dataset.x);
+            const y = parseInt(cell.dataset.y);
+            
+            if (this.gridData[y] && this.gridData[y][x]) {
+                this.gridData[y][x].element = cell;
+            }
+            
+            const building = this.getBuildingAt(x, y);
+            if (building) {
+                if (!cell.querySelector('.building-icon')) {
+                    const icon = document.createElement('span');
+                    icon.className = 'building-icon';
+                    if (building.type === 'castle') {
+                        icon.classList.add('castle');
+                    }
+                    icon.textContent = '🏰';
+                    cell.appendChild(icon);
+                    cell.classList.add('has-building');
+                }
+            }
+        });
     }
     
     render() {
         if (!this.container) return;
         
-        // Clear container
-        this.container.innerHTML = '';
-        
-        // Set grid template
-        this.container.style.display = 'grid';
-        this.container.style.gridTemplateColumns = `repeat(${this.cols}, 1fr)`;
-        this.container.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
-        this.container.style.gap = '1px';
-        this.container.style.width = '100%';
-        this.container.style.height = '100%';
-        
-        // Create cells
-        for (let y = 0; y < this.rows; y++) {
-            for (let x = 0; x < this.cols; x++) {
-                const cell = document.createElement('div');
-                cell.className = 'grid-cell';
-                cell.dataset.x = x;
-                cell.dataset.y = y;
-                
-                // Store reference
-                this.gridData[y][x].element = cell;
-                
-                // Coords label
-                const coords = document.createElement('span');
-                coords.className = 'coords';
-                coords.textContent = `${x},${y}`;
-                cell.appendChild(coords);
-                
-                // Check if building exists
-                const building = this.getBuildingAt(x, y);
-                if (building) {
-                    const buildingData = BUILDINGS[building.type];
-                    if (buildingData) {
-                        const icon = document.createElement('span');
-                        icon.className = 'building-icon';
-                        if (building.type === 'castle') {
-                            icon.classList.add('castle');
-                        }
-                        icon.textContent = buildingData.icon;
-                        cell.appendChild(icon);
-                        cell.classList.add('has-building');
+        const cells = this.container.querySelectorAll('.grid-cell');
+        cells.forEach(cell => {
+            const x = parseInt(cell.dataset.x);
+            const y = parseInt(cell.dataset.y);
+            
+            const building = this.getBuildingAt(x, y);
+            let iconElement = cell.querySelector('.building-icon');
+            
+            if (building) {
+                if (!iconElement) {
+                    const icon = document.createElement('span');
+                    icon.className = 'building-icon';
+                    if (building.type === 'castle') {
+                        icon.classList.add('castle');
                     }
+                    icon.textContent = '🏰';
+                    cell.appendChild(icon);
+                    cell.classList.add('has-building');
                 }
-                
-                // Events
-                cell.addEventListener('click', () => {
-                    if (this.onCellClick) {
-                        this.onCellClick(x, y);
-                    }
-                });
-                
-                cell.addEventListener('mouseenter', () => {
-                    if (this.onCellHover) {
-                        this.onCellHover(x, y);
-                    }
-                });
-                
-                this.container.appendChild(cell);
+            } else {
+                if (iconElement) {
+                    iconElement.remove();
+                    cell.classList.remove('has-building');
+                }
             }
-        }
+        });
     }
     
     getBuildingAt(x, y) {
@@ -111,15 +103,13 @@ class GridManager {
     }
     
     placeBuilding(type, x, y) {
-        const buildingData = BUILDINGS[type];
+        const buildingData = typeof BUILDINGS !== 'undefined' && BUILDINGS[type];
         if (!buildingData) return false;
         
-        const size = buildingData.size;
+        const size = buildingData.size || { width: 1, height: 1 };
         
-        // Check if can place
         if (!this.canPlace(x, y, size)) return false;
         
-        // Add building
         const building = {
             type: type,
             x: x,
@@ -129,7 +119,6 @@ class GridManager {
         };
         this.buildings.push(building);
         
-        // Update grid data
         for (let dy = 0; dy < size.height; dy++) {
             for (let dx = 0; dx < size.width; dx++) {
                 const cellX = x + dx;
@@ -145,12 +134,10 @@ class GridManager {
     }
     
     canPlace(x, y, size) {
-        // Check bounds
         if (x + size.width > this.cols || y + size.height > this.rows) {
             return false;
         }
         
-        // Check if occupied
         for (let dy = 0; dy < size.height; dy++) {
             for (let dx = 0; dx < size.width; dx++) {
                 const cellX = x + dx;
@@ -168,7 +155,7 @@ class GridManager {
         const building = this.getBuildingAt(x, y);
         if (!building) return false;
         
-        const buildingData = BUILDINGS[building.type];
+        const buildingData = typeof BUILDINGS !== 'undefined' && BUILDINGS[building.type];
         if (!buildingData) return false;
         
         if (building.level >= buildingData.maxLevel) {

@@ -18,6 +18,11 @@
 │   │       ├── cloud2.png                  # Cloud texture 2
 │   │       ├── cloud3.png                  # Cloud texture 3
 │   │       │
+│   │       ├── 📁 clouds/                  # ☁️ Cloud images
+│   │       │   ├── cloud1.png              # Cloud texture 1
+│   │       │   ├── cloud2.png              # Cloud texture 2
+│   │       │   └── cloud3.png              # Cloud texture 3
+│   │       │
 │   │       ├── 📁 sigils/                  # House sigils / game symbols
 │   │       │
 │   │       └── 📁 ui/                      # UI elements
@@ -45,18 +50,42 @@
 │   │   │   ├── houses.js                   # House data
 │   │   │   ├── locations.js                # Map coordinates
 │   │   │   ├── lore.js                     # ✨ Lore snippets
-│   │   │   └── buildings.js                # ✨ Building definitions
+│   │   │   ├── buildings.js                # ✨ Building definitions
+│   │   │   └── trees.js                    # 🌲 Tree definitions (NEW)
 │   │   │
 │   │   └── 📁 core/                        # ✨ Game engine classes
 │   │       ├── GridManager.js              # ✨ Grid rendering & placement
 │   │       ├── ResourceManager.js          # ✨ Resource calculations
-│   │       └── GameEngine.js               # ✨ Main game loop
+│   │       ├── GameEngine.js               # ✨ Main game loop
+│   │       ├── TerrainManager.js           # 🌿 Terrain management (NEW)
+│   │       └── TreeManager.js              # 🌲 Tree management (NEW)
 │   │
 │   ├── 📁 kingdoms/                        # ✨ Kingdom folders
 │   │   ├── 📁 winterfell/                  # ✨ House Stark
 │   │   │   ├── winterfell.html             # ✨ Winterfell page
 │   │   │   ├── winterfell.css              # ✨ Winterfell theme
-│   │   │   └── winterfell.js               # ✨ Winterfell logic
+│   │   │   ├── winterfell.js               # ✨ Winterfell logic
+│   │   │   ├── studio.html                 # 🎨 Studio version (backup)
+│   │   │   ├── studio.css                  # 🎨 Studio styles (backup)
+│   │   │   ├── studio.js                   # 🎨 Studio logic (backup)
+│   │   │   │
+│   │   │   └── 📁 assets/                  # Winterfell assets
+│   │   │       ├── 📁 terrain/             # 🟫 Terrain textures
+│   │   │       │   ├── .gitkeep
+│   │   │       │   ├── grass.png           # 🟩 Grass texture
+│   │   │       │   ├── grass-dark.png      # 🟩 Dark grass texture
+│   │   │       │   ├── snow.png            # ⬜ Snow texture
+│   │   │       │   ├── snow-patchy.png     # ⬜ Patchy snow texture
+│   │   │       │   ├── dirt.png            # 🟧 Dirt texture
+│   │   │       │   ├── mud.png             # 🟤 Mud texture (deleted)
+│   │   │       │   ├── water.png           # 🟦 Water texture
+│   │   │       │   ├── stone.png           # ⬛ Stone texture
+│   │   │       │   ├── sand.png            # 🟨 Sand texture (NEW)
+│   │   │       │   └── forest-floor.png    # 🟫 Forest floor texture (NEW)
+│   │   │       │
+│   │   │       └── 📁 trees/               # 🌲 Tree images
+│   │   │           ├── .gitkeep
+│   │   │           └── small_pine1x1.png   # 🌲 Small pine tree (NEW)
 │   │   │
 │   │   ├── 📁 casterlyrock/                # Empty (House Lannister)
 │   │   ├── 📁 kingslanding/                # Empty (House Baratheon)
@@ -80,49 +109,80 @@
 ├── 📄 package.json                         # Project dependencies
 ├── 📄 scripture_plan.md                    # Game documentation/plan
 ├── 📄 server.js                            # Local development server
+├── 📄 project_structure.md                 # 📋 Project structure doc
 ├── 📄 .gitignore                           # Git ignore file
 └── 📄 TO_DO.md                             # ✨ Task tracking
 ```
 
 ---
 
-## 📊 File Summary
+## 📊 Updated File Summary
 
 | Type | Count | Files |
 |------|-------|-------|
-| **HTML Files** | 4 | index.html, map.html, test-images.html, winterfell.html |
-| **CSS Files** | 5 | style.css, landing.css, map.css, transitions.css, kingdom.css |
-| **JavaScript Files** | 10 | main.js, map.js, clouds.js, transitions.js, utils.js, houses.js, locations.js, lore.js, buildings.js, winterfell.js |
-| **JS Core Files** | 3 | GridManager.js, ResourceManager.js, GameEngine.js |
+| **HTML Files** | 6 | index.html, map.html, test-images.html, winterfell.html, studio.html, (winterfell.html) |
+| **CSS Files** | 7 | style.css, landing.css, map.css, transitions.css, kingdom.css, winterfell.css, studio.css |
+| **JavaScript Files** | 13 | main.js, map.js, clouds.js, transitions.js, utils.js, winterfell.js, studio.js, houses.js, locations.js, lore.js, buildings.js, trees.js |
+| **JS Core Files** | 5 | GridManager.js, ResourceManager.js, GameEngine.js, TerrainManager.js, TreeManager.js |
+| **JS Data Files** | 5 | houses.js, locations.js, lore.js, buildings.js, trees.js |
 | **Data Files** | 3 | houses.json, locations.json, lore.json |
-| **Image Files** | 5 | cloud1.png, cloud2.png, cloud3.png, backgroundv3.png, map1.png |
+| **Terrain Images** | 9 | grass.png, grass-dark.png, snow.png, snow-patchy.png, dirt.png, water.png, stone.png, sand.png, forest-floor.png |
+| **Tree Images** | 1+ | small_pine1x1.png (more to add) |
+| **Cloud Images** | 3 | cloud1.png, cloud2.png, cloud3.png |
 | **Kingdom Folders** | 9 | winterfell, casterlyrock, kingslanding, dragonstone, highgarden, sunspear, thevale, riverrun, castleblack |
 | **Config Files** | 2 | package.json, package-lock.json |
-| **Documentation** | 2 | scripture_plan.md, TO_DO.md |
+| **Documentation** | 3 | scripture_plan.md, TO_DO.md, project_structure.md |
 
 ---
 
-## 📋 Git Commit Commands
+## 📋 Features Completed
 
+| Feature | Status | Files |
+|---------|--------|-------|
+| ✅ Terrain Painting (Freehand) | Complete | TerrainManager.js, winterfell.js |
+| ✅ Block Terrain Placement | Complete | TerrainManager.js |
+| ✅ Tree Placement (Single) | Complete | TreeManager.js, trees.js |
+| ✅ Tree Drag & Paint (Brush) | Complete | TreeManager.js, winterfell.js |
+| ✅ Erase Tool | Complete | winterfell.js |
+| ✅ Right-Click Remove | Complete | winterfell.js |
+| ✅ Delete Key Remove | Complete | winterfell.js |
+| ✅ Brush Size ([ and ]) | Complete | winterfell.js |
+| ✅ Auto-Save | Complete | winterfell.js |
+| ✅ Save/Load with Trees | Complete | winterfell.js |
+| ✅ Grid Size Change | Complete | winterfell.js |
+| ✅ Zoom Controls | Complete | winterfell.js |
+| ✅ Snowflakes | Complete | winterfell.js, winterfell.css |
+| ✅ Clouds | Complete | winterfell.html, winterfell.css |
+| ✅ Studio UI Version | Backup | studio.html, studio.css, studio.js |
+
+---
+
+## 📁 Git Status Explanation
+
+| Status | Files |
+|--------|-------|
+| **Modified** | project_structure.md, GridManager.js, terrain/*.png, winterfell.css, winterfell.html, winterfell.js |
+| **Deleted** | terrain/mud.png |
+| **Untracked (NEW)** | TerrainManager.js, TreeManager.js, trees.js, forest-floor.png, sand.png, small_pine1x1.png |
+
+---
+
+## 🎯 Next Steps
+
+1. **Commit your changes:**
 ```bash
-# Add all changes
 git add .
+git commit -m "✨ Added TerrainManager, TreeManager, trees system, new terrain textures, and improved UI"
+```
 
-# Or add specific files
-git add public/css/kingdom.css
-git add public/js/data/buildings.js
-git add public/js/core/
-git add public/kingdoms/
-git add public/js/data/lore.js
-git add public/js/map.js
-git add TO_DO.md
-
-# Commit
-git commit -m "🐺 Add premium Winterfell map editor with grid controls and dark theme"
-
-# Push
+2. **Push to remote:**
+```bash
 git push origin main
 ```
+
+3. **Add more tree assets:**
+   - Generate more tree PNGs using the Gemini prompts
+   - Place them in `public/kingdoms/winterfell/assets/trees/`
 
 ---
 
