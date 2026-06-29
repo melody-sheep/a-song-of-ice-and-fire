@@ -647,23 +647,9 @@ body {
     z-index: 3;
 }
 
-.grid-cell.tree-brush-preview::after {
-    content: '🌲';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 4;
-    animation: treeBrushPulse 0.5s ease-in-out infinite alternate;
-}
 
-@keyframes treeBrushPulse {
-    0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.8); }
-    100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
-}
+
+
 
 .tree-category-label {
     width: 100%;

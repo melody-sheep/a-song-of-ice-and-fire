@@ -995,7 +995,14 @@ function setupTreeHandlers() {
     
     console.log('🎯 Setting up tree handlers, found:', treeButtons.length, 'buttons');
     
+    if (treeButtons.length === 0) {
+        console.error('❌ NO TREE BUTTONS FOUND! Check your HTML for .tree-btn elements');
+        return;
+    }
+    
     treeButtons.forEach(btn => {
+        console.log('🔍 Found tree button:', btn.dataset.tree, btn.textContent.trim());
+        
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
             
@@ -1015,11 +1022,13 @@ function setupTreeHandlers() {
             
             if (treeManager && treeManager.setTree(treeId)) {
                 isTreeMode = true;
+                console.log('✅ Tree mode activated! isTreeMode =', isTreeMode);
                 showNotification(`🌲 Selected: ${treeManager.currentTree.name} - Click on grid to place`);
                 gridWrapper.style.cursor = 'crosshair';
                 updateSideTitle(`🌲 ${treeManager.currentTree.name}`, '#4fc3f7');
                 showBrushIndicator();
             } else {
+                console.error('❌ Failed to set tree:', treeId);
                 showNotification('❌ Failed to select tree', 'error');
             }
         });
@@ -1076,7 +1085,7 @@ function setupTreeGridHandlers() {
         const x = parseInt(cell.dataset.x);
         const y = parseInt(cell.dataset.y);
         
-        console.log(`📍 Tree placement at: ${x}, ${y}`);
+        console.log(`📍 Single tree placement at: ${x}, ${y}`);
         
         if (treeManager.hasTree(x, y)) {
             showNotification('❌ A tree is already rooted here!', 'error');
@@ -1113,6 +1122,7 @@ function setupTreeDragHandlers() {
         lastPlacedX = x;
         lastPlacedY = y;
         
+        console.log(`🖌 Brush start at: ${x}, ${y}, radius: ${currentBrushSize}`);
         placeTreeAtBrush(x, y);
     });
     
@@ -1136,6 +1146,7 @@ function setupTreeDragHandlers() {
     
     gridContainer.addEventListener('mouseup', function(e) {
         if (isTreeDragging) {
+            console.log('🖌 Brush ended');
             isTreeDragging = false;
             treeDragLastX = null;
             treeDragLastY = null;
